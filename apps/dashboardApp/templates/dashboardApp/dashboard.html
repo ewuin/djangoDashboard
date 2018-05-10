@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <title>Dashboard</title>
+  </head>
+  <body>
+    <div id="wrapper" style="width:100%; margin:auto;">
+       {% include "dashboardApp/nav-bar2.html" %}
+
+       <div class="container">
+         <div>
+           <h2>All Users</h2>
+      <table>
+        <thead>
+          <th style='border: 1px solid silver; padding: 7px'>ID No.</th>
+          <th style='border: 1px solid silver; padding: 7px'>Name</th>
+          <th style='border: 1px solid silver; padding: 7px'>Email</th>
+          <th style='border: 1px solid silver; padding: 7px'>Joined</th>
+          <th style='border: 1px solid silver; padding: 7px'>User Level</th>
+        </thead>
+        <tbody>
+
+          {% for u in User %}
+          <tr style='border: 1px solid silver; padding: 7px'>
+            <td style='border: 1px solid silver; padding: 7px'>{{u.id}}</td>
+            <td style='border: 1px solid silver; padding: 7px'>{{u.firstName}} {{u.lastName}}</td>
+            <td style='border: 1px solid silver; padding: 7px'>{{u.email}}</td>
+            <td style='border: 1px solid silver; padding: 7px'>{{u.created_at}}</td>
+            <td style='border: 1px solid silver; padding: 7px'>{{u.userLevel}}</td>
+          </tr>
+          {% endfor %}
+
+        </tbody>
+      </table>
+    </div>
+  </div>
+      <div class="container">
+      {% if messages %}
+        <ul class="messages">
+          {% for message in messages %}
+            <li class="{{ message.tags }}">{{ message }}</li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+    </div>
+     </div> <!--end Wrapper -->
+  </body>
+</html>

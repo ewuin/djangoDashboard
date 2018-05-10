@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+
+    <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <title>Sign In</title>
+  </head>
+  <body>
+    <div id="wrapper" style="width:100%; margin:auto;">
+       {% include "dashboardApp/nav-bar1.html" %}
+
+    <div class="container">
+      <div id="signin_form" class="col-lg-8">
+        <h3>Sign In</h3>
+        <form action="/process_signin" method="post">
+          {% csrf_token %}
+          <label for="emailTC" style="display:block;">Email: <input type="text" name="emailTC" style="display:block;"></label>
+          <label for="passwordTC" style="display:block;">Password: <input type="text" name="passwordTC" style="display:block;"></label>
+          <input type="submit" value="Login">
+        </form>
+        <p><a href="/register">Don't have an account? Register here!</a></p>
+      </div>
+    </div>
+    <div class="container">
+    {% if messages %}
+      <ul class="messages">
+        {% for message in messages %}
+          <li class="{{ message.tags }}">{{ message }}</li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+  </div>
+     </div> <!--end Wrapper -->
+  </body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <title>Register</title>
+  </head>
+  <body>
+    <div id="wrapper" style="width:100%; margin:auto;">
+       {% include "dashboardApp/nav-bar2.html" %}
+
+      <div class="container">
+       <div id="registration_form" class="col-lg-8">
+         <h3>Register</h3>
+          <form action="/process_edit/{{user.id}}" method="POST">
+           {% csrf_token %}
+           <label for="fnameTE" style="display:block;">First Name: <input type="text" name="fnameTE" placeholder={{user.firstName}} style="display:block;"></label>
+           <label for="lnameTE" style="display:block;">Last Name: <input type="text" name="lnameTE" placeholder={{user.lastName}} style="display:block;"></label>
+           <label for="emailTE" style="display:block;">Email: <input type="text" name="emailTE" placeholder={{user.email}} style="display:block;"></label>
+           <label for="passwordTE" style="display:block;">New Password: <input type="text" name="passwordTE" style="display:block;"></label>
+           <label for="confirm_passwordTE" style="display:block;">Confirm New Password: <input type="text" name="confirm_passwordTE" style="display:block;"></label>
+           <label for="userLevelTE" style="display:block;">User Level:
+             <select name="userLevelTE">
+              <option value="NoChange" selected>No change</option>
+              <option value="normal">normal</option>
+              <option value="admin">admin</option>
+             </select>
+           </label>
+           <label style="display:block;">Description: <textarea name="descriptionTE" style="display:block;">{{user.description}}</textarea></label>
+          <input type="submit">
+         </form>
+
+         <p><a href="/dashboard/{{request.session.id}}">Cancel</a></p>
+       </div>
+      </div>
+      {% if messages %}
+        <ul class="messages">
+          {% for message in messages %}
+            <li class="{{ message.tags }}">{{ message }}</li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+     </div> <!--end Wrapper -->
+  </body>
+</html>

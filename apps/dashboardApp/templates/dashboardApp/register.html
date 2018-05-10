@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <title>Register</title>
+  </head>
+  <body>
+    <div id="wrapper" style="width:100%; margin:auto;">
+       {% include "dashboardApp/nav-bar1.html" %}
+
+      <div class="container">
+       <div id="registration_form" class="col-lg-8">
+         <h3>Register</h3>
+         <form action="/process_registraion" method="post">
+           {% csrf_token %}
+           <label for="fnameTA" style="display:block;">First Name: <input type="text" name="fnameTA" style="display:block;"></label>
+           <label for="lnameTA" style="display:block;">Last Name: <input type="text" name="lnameTA" style="display:block;"></label>
+           <label for="emailTA" style="display:block;">Email: <input type="text" name="emailTA" style="display:block;"></label>
+           <label for="passwordTA" style="display:block;">Password: <input type="text" name="passwordTA" style="display:block;"></label>
+           <label for="confirm_passwordTA" style="display:block;">Confirm Password: <input type="text" name="confirm_passwordTA" style="display:block;"></label>
+          <input type="submit">
+         </form>
+         <p><a href="/signin">Already have an account? Sign in here!</a></p>
+       </div>
+      </div>
+      {% if messages %}
+        <ul class="messages">
+          {% for message in messages %}
+            <li class="{{ message.tags }}">{{ message }}</li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+     </div> <!--end Wrapper -->
+  </body>
+</html>
